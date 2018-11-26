@@ -15,7 +15,7 @@ using std::vector;
 
 class Solution {
 public:
-    int maxProfit(vector<int>& prices);
+    int maxProfit(vector<int> &prices);
 };
 
 
