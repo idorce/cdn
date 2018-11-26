@@ -3,4 +3,4 @@ project(leetcode)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(leetcode main.cpp solution/maxProfit.cpp solution.h)
+add_executable(leetcode main.cpp solution.h solution/maxProfit.cpp)
