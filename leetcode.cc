@@ -47,9 +47,9 @@ class Solution {
    public:
     bool isMatch(string s, string p) {
         int i, j;
+        vector<vector<bool>> dp(2, vector<bool>(p.size() + 1, false));
 
         // First column all false, since empty p does not match non-empty s.
-        vector<vector<bool>> dp(2, vector<bool>(p.size() + 1, false));
         // When s and p are both empty, true.
         dp[0][0] = true;
 
