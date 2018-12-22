@@ -6,6 +6,7 @@
 // dp[i, j] == 1：s[i:j+1]是回文。
 // dp[i, j] = dp[i + 1, j - 1] && s[i] == s[j]
 // dp[i, i + 1] = dp[i, i - 1] = 1
+
 class Solution {
 public:
     string longestPalindrome(string s) {
