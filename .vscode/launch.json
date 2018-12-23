@@ -8,14 +8,14 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/leetcode.out",
+            "program": "${workspaceFolder}/oj.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": true,
             "MIMode": "lldb",
-            "preLaunchTask":"leetcode"
+            "preLaunchTask":"oj"
         }
     ]
 }
