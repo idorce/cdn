@@ -1,3 +1,6 @@
 {
-    "C_Cpp.autocomplete": "Disabled"
+    "C_Cpp.autocomplete": "Disabled",
+    "files.associations": {
+        "iosfwd": "cpp"
+    }
 }
