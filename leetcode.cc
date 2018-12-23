@@ -4,10 +4,8 @@
 
 using namespace std;
 
-class Solution {
+class DP {
    public:
-    // DP
-
     // 5. Longest Palindromic Substring
     string longestPalindrome(string s) {
         // dp[i][j] == 1 means s[i:j+1] is palindromic.
@@ -41,18 +39,13 @@ class Solution {
         // dp[i][j] = -|      |- |- dp[i - 1][j] && s[i - 1] == p[j - 2], p[j - 2] != '.' -|- (more) -|
         //             |- dp[i - 1][j - 1]                        ,                                      p[j - 1] == '.'
         //             |- dp[i - 1][j - 1] && s[i - 1] == p[j - 1],                                      p[j - 1] == 'a' to 'z' (p[j - 1] != '.')
-
         int i, j;
         vector<vector<bool>> dp(2, vector<bool>(p.size() + 1, false));
-
         // First column all false, since empty p does not match non-empty s.
-        // When s and p are both empty, true.
-        dp[0][0] = true;
-
-        // First row is not all true: p matchs empty s iff
+        dp[0][0] = true;  // When s and p are both empty, true.
+        // First row is NOT all true: p matchs empty s iff
         for (j = 2; j <= p.size(); ++j)
             dp[0][j] = p[j - 1] == '*' && dp[0][j - 2];
-
         for (i = 1; i <= s.size(); ++i) {
             for (j = 1; j <= p.size(); ++j) {
                 if (p[j - 1] != '*')
@@ -65,37 +58,36 @@ class Solution {
             }
             dp[0] = dp[1];
         }
-
         // dp[0][p.size()] does not work when s is empty.
         return dp[0][p.size()];
     }
 
     // 32. Longest Valid Parentheses
     int longestValidParentheses(string s) {
-        int i, j, max_len = 0, tmp_len;
-        vector<bool> valid(s.size() - 1, false);
-
-        for (i = 0; i < s.size() - 1; ++i)
-            valid[i] = s[i] == '(' && s[i + 1] == ')';
-
-        for (i = 0; i < valid.size(); ++i) {
-            // Cannot be longer.
-            if (i + (max_len - 1) * 2 >= valid.size() - 1) break;
-
-            tmp_len = 0;
-            for (j = i; j < valid.size(); j += 2) {
-                if (!valid[j]) break;
-                ++tmp_len;
+        // "()(())" is also valid.
+        // https://leetcode.com/problems/longest-valid-parentheses/discuss
+        // Stack method: /14126; DP method: /14133.
+        int i, max_len = 0, left;
+        vector<int> dp(s.size(), 0);
+        for (i = 1; i < s.size(); ++i) {
+            if (s[i] == ')') {
+                if (s[i - 1] == '(') {
+                    dp[i] = (i >= 2) ? (dp[i - 2] + 2) : 2;
+                    max_len = max(max_len, dp[i]);
+                } else {  // s[i - 1] == ')'
+                    left = i - dp[i - 1] - 1;
+                    if (left >= 0 && s[left] == '(') {
+                        dp[i] = dp[i - 1] + 2 + ((left > 0) ? dp[left - 1] : 0);
+                        max_len = max(max_len, dp[i]);
+                    }
+                }
             }
-            max_len = max(max_len, tmp_len * 2);
         }
-
         return max_len;
     }
 };
 
 int main() {
-    string s = ")()())";
-    auto result =  Solution().longestValidParentheses(s);
+    cout << DP().longestValidParentheses("()(())") << endl;
     return 0;
 }
