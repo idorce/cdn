@@ -68,7 +68,7 @@ class DP {
     int longestValidParentheses(string s) {
         // "()(())" is also valid.
         // https://leetcode.com/problems/longest-valid-parentheses/discuss
-        // Stack method: /14126; DP method: /14133.
+        // Stack method: /142.6; DP method: /143.3.
         int i, max_len = 0, left;
         vector<int> dp(s.size(), 0);
         for (i = 1; i < s.size(); ++i) {
@@ -121,7 +121,7 @@ class DP {
         return dp[0][n - 1];
     }
 
-    // # 63. Unique Paths II
+    // 63. Unique Paths II
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         int i, j, m = obstacleGrid.size(), n = obstacleGrid[0].size();
         vector<vector<int>> dp(2, vector<int>(n, 0));
@@ -138,7 +138,7 @@ class DP {
         return dp[0][n - 1];
     }
 
-    // # 64. Minimum Path Sum
+    // 64. Minimum Path Sum
     int minPathSum(vector<vector<int>>& grid) {
         int i, j;
         for (j = 1; j < grid[0].size(); ++j)
@@ -151,61 +151,64 @@ class DP {
         return grid[grid.size() - 1][grid[0].size() - 1];
     }
 
-    // # 70. Climbing Stairs
+    // 70. Climbing Stairs
 
-    // # 72. Edit Distance
+    // 72. Edit Distance
+    int minDistance(string word1, string word2) {
+        
+    }
 
-    // # 85. Maximal Rectangle
+    // 85. Maximal Rectangle
 
-    // # 87. Scramble String
+    // 87. Scramble String
 
-    // # 91. Decode Ways
+    // 91. Decode Ways
 
-    // # 95. Unique Binary Search Trees II
+    // 95. Unique Binary Search Trees II
 
-    // # 96. Unique Binary Search Trees
+    // 96. Unique Binary Search Trees
 
-    // # 97. Interleaving String
+    // 97. Interleaving String
 
-    // # 11.5 Distinct Subsequences
+    // 115. Distinct Subsequences
 
-    // # 12.0 Triangle
+    // 120. Triangle
 
-    // # 12.1 Best Time to Buy and Sell Stock
+    // 121. Best Time to Buy and Sell Stock
 
-    // # 12.3 Best Time to Buy and Sell Stock III
+    // 123. Best Time to Buy and Sell Stock III
 
-    // # 13.2 Palindrome Partitioning II
+    // 132. Palindrome Partitioning II
 
-    // # 13.9 Word Break
+    // 139. Word Break
 
-    // # 14.0 Word Break II
+    // 140. Word Break II
 
     // -------------------------------------------------------------------------
 
-    // # 15.2 Maximum Product Subarray
+    // 152. Maximum Product Subarray
 
-    // # 17.4 Dungeon Game
+    // 174. Dungeon Game
 
-    // # 18.8 Best Time to Buy and Sell Stock IV
+    // 188. Best Time to Buy and Sell Stock IV
 
-    // # 19.8 House Robber
+    // 198. House Robber
 
-    // # 21.3 House Robber II
+    // 213. House Robber II
 
-    // # 22.1 Maximal Square
+    // 221. Maximal Square
 
-    // # 25.6 Paint House
+    // 256. Paint House
 
-    // # 26.4 Ugly Number II
+    // 264. Ugly Number II
 
-    // # 26.5 Paint House II
+    // 265. Paint House II
 
-    // # 27.6 Paint Fence
+    // 276. Paint Fence
 
-    // # 27.9 Perfect Squares
+    // 279. Perfect Squares
 
-    // # 30.0 Longest Increasing Subsequence
+    // 300. Longest Increasing Subsequence
 
     // -------------------------------------------------------------------------
 };
