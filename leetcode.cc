@@ -85,6 +85,31 @@ class DP {
         }
         return max_len;
     }
+
+    // 44. Wildcard Matching
+    bool isMatch(string s, string p) {
+        int i, j;
+        vector<vector<int>> dp(2, vector<int>(p.size() + 1, 0));
+        dp[0][0] = 1;
+        for (j = 1; j <= p.size(); ++j)
+            dp[0][j] = dp[0][j - 1] && p[j - 1] == '*';
+        for (i = 1; i <= s.size(); ++i) {
+            for (j = 1; j <= p.size(); ++j) {
+                if (p[j - 1] != '*')
+                    dp[1][j] = dp[0][j - 1] &&
+                               (p[j - 1] == s[i - 1] || p[j - 1] == '?');
+                else
+                    dp[1][j] = dp[0][j] || dp[1][j - 1];
+            }
+            dp[0] = dp[1];
+        }
+        return dp[0][p.size()];
+    }
+
+    // 62. Unique Paths
+    int uniquePaths(int m, int n) {
+        
+    }
 };
 
 int main() {
