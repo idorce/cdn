@@ -121,7 +121,7 @@ class DP {
         return dp[0][n - 1];
     }
 
-    // # 63 Unique Paths II
+    // # 63. Unique Paths II
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         int i, j, m = obstacleGrid.size(), n = obstacleGrid[0].size();
         vector<vector<int>> dp(2, vector<int>(n, 0));
@@ -132,71 +132,80 @@ class DP {
         for (i = 1; i < m; ++i) {
             dp[1][0] = dp[0][0] && !obstacleGrid[i][0];
             for (j = 1; j < n; ++j)
-                dp[1][j] = (dp[0][j] * !obstacleGrid[i - 1][j] +
-                            dp[1][j - 1] * !obstacleGrid[i][j - 1]) *
-                           !obstacleGrid[i][j];
+                dp[1][j] = (dp[0][j] + dp[1][j - 1]) * !obstacleGrid[i][j];
             dp[0] = dp[1];
         }
         return dp[0][n - 1];
     }
 
-    // # 64 Minimum Path Sum
+    // # 64. Minimum Path Sum
+    int minPathSum(vector<vector<int>>& grid) {
+        int i, j;
+        for (j = 1; j < grid[0].size(); ++j)
+            grid[0][j] += grid[0][j - 1];
+        for (i = 1; i < grid.size(); ++i) {
+            grid[i][0] += grid[i - 1][0];
+            for (j = 1; j < grid[0].size(); ++j)
+                grid[i][j] += min(grid[i][j - 1], grid[i - 1][j]);
+        }
+        return grid[grid.size() - 1][grid[0].size() - 1];
+    }
 
-    // # 70 Climbing Stairs
+    // # 70. Climbing Stairs
 
-    // # 72 Edit Distance
+    // # 72. Edit Distance
 
-    // # 85 Maximal Rectangle
+    // # 85. Maximal Rectangle
 
-    // # 87 Scramble String
+    // # 87. Scramble String
 
-    // # 91 Decode Ways
+    // # 91. Decode Ways
 
-    // # 95 Unique Binary Search Trees II
+    // # 95. Unique Binary Search Trees II
 
-    // # 96 Unique Binary Search Trees
+    // # 96. Unique Binary Search Trees
 
-    // # 97 Interleaving String
+    // # 97. Interleaving String
 
-    // # 115 Distinct Subsequences
+    // # 11.5 Distinct Subsequences
 
-    // # 120 Triangle
+    // # 12.0 Triangle
 
-    // # 121 Best Time to Buy and Sell Stock
+    // # 12.1 Best Time to Buy and Sell Stock
 
-    // # 123 Best Time to Buy and Sell Stock III
+    // # 12.3 Best Time to Buy and Sell Stock III
 
-    // # 132 Palindrome Partitioning II
+    // # 13.2 Palindrome Partitioning II
 
-    // # 139 Word Break
+    // # 13.9 Word Break
 
-    // # 140 Word Break II
+    // # 14.0 Word Break II
 
     // -------------------------------------------------------------------------
 
-    // # 152 Maximum Product Subarray
+    // # 15.2 Maximum Product Subarray
 
-    // # 174 Dungeon Game
+    // # 17.4 Dungeon Game
 
-    // # 188 Best Time to Buy and Sell Stock IV
+    // # 18.8 Best Time to Buy and Sell Stock IV
 
-    // # 198 House Robber
+    // # 19.8 House Robber
 
-    // # 213 House Robber II
+    // # 21.3 House Robber II
 
-    // # 221 Maximal Square
+    // # 22.1 Maximal Square
 
-    // # 256 Paint House
+    // # 25.6 Paint House
 
-    // # 264 Ugly Number II
+    // # 26.4 Ugly Number II
 
-    // # 265 Paint House II
+    // # 26.5 Paint House II
 
-    // # 276 Paint Fence
+    // # 27.6 Paint Fence
 
-    // # 279 Perfect Squares
+    // # 27.9 Perfect Squares
 
-    // # 300 Longest Increasing Subsequence
+    // # 30.0 Longest Increasing Subsequence
 
     // -------------------------------------------------------------------------
 };
