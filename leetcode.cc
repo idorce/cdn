@@ -123,7 +123,21 @@ class DP {
 
     // # 63 Unique Paths II
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
-        
+        int i, j, m = obstacleGrid.size(), n = obstacleGrid[0].size();
+        vector<vector<int>> dp(2, vector<int>(n, 0));
+        for (j = 0; j < n; ++j) {
+            if (obstacleGrid[0][j]) break;
+            dp[0][j] = 1;
+        }
+        for (i = 1; i < m; ++i) {
+            dp[1][0] = dp[0][0] && !obstacleGrid[i][0];
+            for (j = 1; j < n; ++j)
+                dp[1][j] = (dp[0][j] * !obstacleGrid[i - 1][j] +
+                            dp[1][j - 1] * !obstacleGrid[i][j - 1]) *
+                           !obstacleGrid[i][j];
+            dp[0] = dp[1];
+        }
+        return dp[0][n - 1];
     }
 
     // # 64 Minimum Path Sum
