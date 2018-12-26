@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// 图、树、堆、栈、链表、哈希表、记忆搜索、动态规划、指针法、并查集等
+
 class DP {
    public:
     // 5. Longest Palindromic Substring
@@ -108,8 +110,81 @@ class DP {
 
     // 62. Unique Paths
     int uniquePaths(int m, int n) {
+        int i, j;
+        vector<vector<int>> dp{vector<int>(n, 1), vector<int>(n, 0)};
+        dp[1][0] = 1;
+        for (i = 1; i < m; ++i) {
+            for (j = 1; j < n; ++j)
+                dp[1][j] = dp[0][j] + dp[1][j - 1];
+            dp[0] = dp[1];
+        }
+        return dp[0][n - 1];
+    }
+
+    // # 63 Unique Paths II
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         
     }
+
+    // # 64 Minimum Path Sum
+
+    // # 70 Climbing Stairs
+
+    // # 72 Edit Distance
+
+    // # 85 Maximal Rectangle
+
+    // # 87 Scramble String
+
+    // # 91 Decode Ways
+
+    // # 95 Unique Binary Search Trees II
+
+    // # 96 Unique Binary Search Trees
+
+    // # 97 Interleaving String
+
+    // # 115 Distinct Subsequences
+
+    // # 120 Triangle
+
+    // # 121 Best Time to Buy and Sell Stock
+
+    // # 123 Best Time to Buy and Sell Stock III
+
+    // # 132 Palindrome Partitioning II
+
+    // # 139 Word Break
+
+    // # 140 Word Break II
+
+    // -------------------------------------------------------------------------
+
+    // # 152 Maximum Product Subarray
+
+    // # 174 Dungeon Game
+
+    // # 188 Best Time to Buy and Sell Stock IV
+
+    // # 198 House Robber
+
+    // # 213 House Robber II
+
+    // # 221 Maximal Square
+
+    // # 256 Paint House
+
+    // # 264 Ugly Number II
+
+    // # 265 Paint House II
+
+    // # 276 Paint Fence
+
+    // # 279 Perfect Squares
+
+    // # 300 Longest Increasing Subsequence
+
+    // -------------------------------------------------------------------------
 };
 
 int main() {
