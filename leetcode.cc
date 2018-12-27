@@ -89,7 +89,7 @@ class DP {
     }
 
     // 44. Wildcard Matching
-    bool isMatch(string s, string p) {
+    bool isMatch_44(string s, string p) {
         int i, j;
         vector<vector<int>> dp(2, vector<int>(p.size() + 1, 0));
         dp[0][0] = 1;
@@ -155,7 +155,16 @@ class DP {
 
     // 72. Edit Distance
     int minDistance(string word1, string word2) {
-        
+        int i, j;
+        vector<vector<int>> dp(2, vector<int>(word2.size() + 1, 0));
+        for (j = 1; j <= word2.size(); ++j) dp[0][j] = j;
+        for (i = 1; i <= word1.size(); ++i) {
+            dp[1][0] = dp[0][0] + 1;
+            for (j = 1; j <= word2.size(); ++j)
+                dp[1][j] = 1 + min({dp[0][j], dp[1][j - 1], dp[0][j - 1] - (word1[i - 1] == word2[j - 1])});
+            dp[0] = dp[1];
+        }
+        return dp[0][word2.size()];
     }
 
     // 85. Maximal Rectangle
@@ -214,6 +223,6 @@ class DP {
 };
 
 int main() {
-    cout << DP().longestValidParentheses("()(())") << endl;
+    cout << DP().minDistance("horse", "ros") << endl;
     return 0;
 }
