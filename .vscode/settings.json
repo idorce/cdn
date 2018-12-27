@@ -1,9 +1,3 @@
 {
-    "C_Cpp.autocomplete": "Disabled",
-    "files.associations": {
-        "iosfwd": "cpp",
-        "iostream": "cpp",
-        "ostream": "cpp",
-        "vector": "cpp"
-    },
+    // "C_Cpp.autocomplete": "Disabled"
 }

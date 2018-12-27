@@ -89,7 +89,7 @@ class DP {
     }
 
     // 44. Wildcard Matching
-    bool isMatch_44(string s, string p) {
+    bool isMatch_(string s, string p) {
         int i, j;
         vector<vector<int>> dp(2, vector<int>(p.size() + 1, 0));
         dp[0][0] = 1;
@@ -168,6 +168,37 @@ class DP {
     }
 
     // 85. Maximal Rectangle
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        // https://leetcode.com/problems/maximal-rectangle/discuss/29054
+        if (matrix.empty()) return 0;
+        int i, j, m = matrix.size(), n = matrix[0].size(), max_area = 0,
+                  cur_right, cur_left;
+        vector<int> height(n, 0), left(n, 0), right(n, n);
+        for (i = 0; i < m; ++i) {
+            cur_left = 0, cur_right = n;
+            for (j = 0; j < n; ++j) {
+                if (matrix[i][j] == '1')
+                    left[j] = max(left[j], cur_left);
+                else {
+                    left[j] = 0;
+                    cur_left = j + 1;
+                }
+            }
+            for (j = n - 1; j >= 0; --j) {
+                if (matrix[i][j] == '1')
+                    right[j] = min(right[j], cur_right);
+                else {
+                    right[j] = n;
+                    cur_right = j;
+                }
+            }
+            for (j = 0; j < n; ++j) {
+                height[j] = (height[j] + 1) * (matrix[i][j] == '1');
+                max_area = max(max_area, (right[j] - left[j]) * height[j]);
+            }
+        }
+        return max_area;
+    }
 
     // 87. Scramble String
 
@@ -193,7 +224,7 @@ class DP {
 
     // 140. Word Break II
 
-    // -------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     // 152. Maximum Product Subarray
 
@@ -219,7 +250,7 @@ class DP {
 
     // 300. Longest Increasing Subsequence
 
-    // -------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 };
 
 int main() {
