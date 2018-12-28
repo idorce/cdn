@@ -206,21 +206,32 @@ bool h_87(unordered_map<string, bool> &dp, string s1, string s2) {
     if (s1 == s2) return true;
     if (dp.count(s1 + s2)) return dp[s1 + s2];
     if (dp.count(s2 + s1)) return dp[s2 + s1];
-    bool scramble = false;
+
+    // prune
     int len = s1.size();
+    unordered_map<char, int> hist;
+    for (int i = 0; i < len; ++i) {
+        ++hist[s1[i]];
+        --hist[s2[i]];
+    }
+    for (auto &it : hist)
+        if (it.second) return false;
+
+    bool scramble = false;
     for (int i = 1; i < len && !scramble; ++i) {
         scramble = scramble ||
                    (h_87(dp, s1.substr(0, i), s2.substr(0, i)) &&
-                    h_87(dp, s1.substr(i, len - i), s2.substr(i, len - i)));
+                    h_87(dp, s1.substr(i), s2.substr(i)));
         scramble = scramble ||
-                   (h_87(dp, s1.substr(0, i), s2.substr(len - i, i)) &&
-                    h_87(dp, s1.substr(i, len - i), s2.substr(0, len - i)));
+                   (h_87(dp, s1.substr(0, i), s2.substr(len - i)) &&
+                    h_87(dp, s1.substr(i), s2.substr(0, len - i)));
     }
     dp[s1 + s2] = scramble; 
     dp[s2 + s1] = scramble; 
     return scramble;
 }
 bool isScramble(string s1, string s2) {
+    if (s1.size() != s2.size()) return false;
     unordered_map<string, bool> dp;
     return h_87(dp, s1, s2);
 }
