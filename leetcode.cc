@@ -238,12 +238,34 @@ bool isScramble(string s1, string s2) {
 
 // 91. Decode Ways
 int numDecodings(string s) {
-    
+    if (!s.size() || s[0] == '0') return 0;
+    int dp__ = 1, dp_ = 1, dp;
+    for (int i = 1; i < s.size(); ++i) {
+        dp = dp_ * (s[i] != '0') + 
+             dp__ * (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] < '7'));
+        dp__ = dp_, dp_ = dp;
+    }
+    return dp_;
 }
 
 // 95. Unique Binary Search Trees II
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+vector<TreeNode*> generateTrees(int n) {
+            
+}
 
 // 96. Unique Binary Search Trees
+int numTrees(int n) {
+    
+}
 
 // 97. Interleaving String
 
