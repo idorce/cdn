@@ -1,3 +1,67 @@
+//------
+// A. Basic Maximum Flow Algorithm
+
+// Description：
+// Given a directed graph with N vertices and M edges. The i-th edge is from vertex Ui to vertex Vi with capacity Ci. Find the maximum flow from source S to sink T.
+
+// Input：
+// Input is given from Standard Input in the following format:
+
+// N M S T
+
+// U1 V1 C1
+
+// U2 V2 C2
+
+// ..
+
+// UN VN CN
+
+// Output：
+// Print maximum flow from source S
+//  to sink T
+// .
+
+// Sample Input 1
+// 7 14 1 7
+// 1 2 5
+// 1 3 6
+// 1 4 5
+// 2 3 2
+// 2 5 3
+// 3 2 2
+// 3 4 3
+// 3 5 3
+// 3 6 7
+// 4 6 5
+// 5 6 1
+// 6 5 1
+// 5 7 8
+// 6 7 7
+// Sample Output 1
+// 14
+// Sample Input 2
+// 10 16 1 2
+// 1 3 2
+// 1 4 2
+// 5 2 2
+// 6 2 2
+// 3 5 1
+// 3 6 1
+// 4 5 1
+// 4 6 1
+// 1 7 2147483647
+// 9 2 2147483647
+// 7 8 2147483647
+// 10 9 2147483647
+// 8 5 2
+// 8 6 2
+// 3 10 2
+// 4 10 2
+// Sample Output 2
+// 8
+//------
+
 #include <queue>
 #include <iostream>
 #include <cstring>
