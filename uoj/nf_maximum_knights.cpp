@@ -54,7 +54,9 @@
 #include <queue>
 #include <stack>
 using namespace std;
+
 typedef long long ll;
+
 const int oo = 1e9;        /**oo 表示无穷大*/
 const int mm = 119999999;  /**mm 表示边的最大数量，记住要是原图的两倍，在加边的时候都是双向的*/
 const int mn = 40010;      /**mn 表示点的最大数量*/
@@ -101,36 +103,36 @@ int Dinic_flow() {
     return ret;
 }
 int xx[210][210], fx[8][2] = {{1, 2}, {2, 1}, {-1, -2}, {-2, -1}, {1, -2}, {-2, 1}, {-1, 2}, {2, -1}};
+//------
 int main() {
+    ios::sync_with_stdio(false);
     int m, n;
-    while (~scanf("%d%d", &n, &m)) {
-        memset(xx, 0, sizeof(xx));
-        prepare(n * n + 2, 0, n * n + 1);
-        for (int i = 0; i < m; i++) {
-            int a, b;
-            scanf("%d%d", &a, &b);
-            xx[a][b] = 1;
-        }
-        for (int i = 1; i <= n; i++)
-            for (int j = 1; j <= n; j++)
-                if (!xx[i][j]) {
-                    if ((i + j) & 1)
-                        addedge(0, (i - 1) * n + j, 1);
-                    else
-                        addedge((i - 1) * n + j, n * n + 1, 1);
-                    for (int k = 0; k < 8; k++) {
-                        int x = i + fx[k][0], y = j + fx[k][1];
-                        if (x >= 1 && x <= n && y >= 1 && y <= n && !xx[x][y]) {
-                            if ((i + j) & 1)
-                                addedge((i - 1) * n + j, (x - 1) * n + y, oo);
-                            else
-                                addedge((x - 1) * n + y, (i - 1) * n + j, oo);
-                        }
-                    }
-                    xx[i][j] = 1;
-                }
-        printf("%d\n", n * n - m - Dinic_flow());
+    cin >> n >> m;
+    memset(xx, 0, sizeof(xx));
+    prepare(n * n + 2, 0, n * n + 1);
+    for (int i = 0; i < m; i++) {
+        int a, b;
+        cin >> a >> b;
+        xx[a][b] = 1;
     }
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= n; j++)
+            if (!xx[i][j]) {
+                if ((i + j) & 1)
+                    addedge(0, (i - 1) * n + j, 1);
+                else
+                    addedge((i - 1) * n + j, n * n + 1, 1);
+                for (int k = 0; k < 8; k++) {
+                    int x = i + fx[k][0], y = j + fx[k][1];
+                    if (x >= 1 && x <= n && y >= 1 && y <= n && !xx[x][y]) {
+                        if ((i + j) & 1)
+                            addedge((i - 1) * n + j, (x - 1) * n + y, oo);
+                        else
+                            addedge((x - 1) * n + y, (i - 1) * n + j, oo);
+                    }
+                }
+                xx[i][j] = 1;
+            }
+    cout << n * n - m - Dinic_flow() << endl;
     return 0;
 }
-//------
